@@ -788,8 +788,20 @@ public class ClientComms {
 			handleRunException(e);
 		}
 		return token;
-	}	
-	
+	}
+
+	public MqttToken checkForActivity(IMqttActionListener pingCallback, long pseudoKeepAlive){
+		MqttToken token = null;
+		try{
+			token = clientState.checkForActivity(pingCallback, pseudoKeepAlive);
+		}catch(MqttException e){
+			handleRunException(e);
+		}catch(Exception e){
+			handleRunException(e);
+		}
+		return token;
+	}
+
 	private void handleRunException(Exception ex) {
 		final String methodName = "handleRunException";
 		//@TRACE 804=exception
